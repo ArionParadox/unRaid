@@ -1,6 +1,6 @@
 # unRaid
 
-This was created to control the fans in my Dell Poweredge. I am lucky enough to be on the right iDrac version to use this method. 
+This was created to control the fans in my Dell Poweredge. I am lucky enough to be on the right iDrac version to use this method. \n
 I didn't want to get my temperatures from iDrac as currently some of my drives are outside the cooling shroud; hence needing to grab the data from smartctl.
 
 
