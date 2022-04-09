@@ -1,15 +1,22 @@
 #!/bin/bash
+
+#This was created to control the fans in my Dell Poweredge. I am lucky enough to be on the right iDrac version to use this method. 
+#I didn't want to get my temperate from iDrac as currently some of my drives are outside the cooling shroud; hence needing to grab the data from smartctl
+
 #Inspiration from --  https://github.com/kmwoley/unRAID-Tools/blob/master/unraid_array_fan.sh
 #and from -- https://www.reddit.com/r/unRAID/comments/guwrjy/so_you_bought_a_dell_poweredge_server_for_unraid/ftc82qi/ 
 
+#Getting my 3 drives
 SDC=`smartctl -A /dev/sdc | grep -m 1 -i Temperature_Celsius | awk '{print $10}'`
 SDD=`smartctl -A /dev/sdd | grep -m 1 -i Temperature_Celsius | awk '{print $10}'`
 SDE=`smartctl -A /dev/sde | grep -m 1 -i Temperature_Celsius | awk '{print $10}'`
 
+#Setting my balacing temps
 FAN_LOW_TEMP=33     # Anything this number and below - fan is low
 FAN_MEDIUM_TEMP=38  # Setting a medium temp
 FAN_HIGH_TEMP=45    # Anything this number or above - fan is high speed
 
+#Averaging out the temps
 TOTAL_TEMP=$((SDC+SDD+SDE))
 #echo $TOTAL_TEMP
 AVG_TEMP=$((TOTAL_TEMP/3))
